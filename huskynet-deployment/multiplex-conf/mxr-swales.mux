@@ -1,0 +1,160 @@
+general {
+	dabmode 1
+}
+ensemble {
+	id 0x4fff
+	ecc 0xec ; Extended Country Code	
+	local-time-offset auto
+	international-table 1
+	label "MXR West & Wales"
+	shortlabel "MXR W&W"
+}
+services {
+	srv-n70 { label "Nation 70s" }
+	srv-n80 { label "Nation 80s" }
+	srv-n90 { label "Nation 90s" }
+	srv-nrok { label "Nation Rocks" }
+	srv-capw { label "Capital Wales" }
+	srv-hrtw { label "Heart Wales" }
+	srv-bbcrw { label "BBC R. Wales" }
+	srv-bbcrc { label "BBC R. Cymru" }
+	srv-smtw { label "Smooth Wales" }
+	srv-brdg { label "Bridge FM" }
+}
+subchannels {
+	srv-n70-sub1 {
+		type audio
+		bitrate 128
+		id 1
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:12001"
+	}
+	srv-n80-sub1 {
+		type audio
+		bitrate 128
+		id 2
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:12002"
+	}
+	srv-n90-sub1 {
+		type audio
+		bitrate 128
+		id 3
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:12003"
+	}
+	srv-nrok-sub1 {
+		type audio
+		bitrate 128
+		id 4
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:12004"
+	}
+	srv-capw-sub1 {
+		type audio
+		bitrate 128
+		id 5
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:12005"
+	}
+	srv-hrtw-sub1 {
+		type audio
+		bitrate 128
+		id 6
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:12006"
+	}
+	srv-bbcrw-sub1 {
+		type audio
+		bitrate 128
+		id 7
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:12007"
+	}
+	srv-bbcrc-sub1 {
+		type audio
+		bitrate 128
+		id 8
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:12008"
+	}
+	srv-smtw-sub1 {
+		type audio
+		bitrate 128
+		id 9
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:12009"
+	}
+	srv-brdg-sub1 {
+		type audio
+		bitrate 128
+		id 10
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:12010"
+	}
+}
+components {
+	comp-n70 {
+		service srv-n70
+		subchannel srv-n70-sub1
+	}
+	comp-n80 {
+		service srv-n80
+		subchannel srv-n80-sub1
+	}
+	comp-n90 {
+		service srv-n90
+		subchannel srv-n90-sub1
+	}
+	comp-nrok {
+		service srv-nrok
+		subchannel srv-nrok-sub1
+	}
+	comp-capw {
+		service srv-capw
+		subchannel srv-capw-sub1
+	}
+	comp-hrtw {
+		service srv-hrtw
+		subchannel srv-hrtw-sub1
+	}
+	comp-bbcrw {
+		service srv-bbcrw
+		subchannel srv-bbcrw-sub1
+	}
+	comp-bbcrc {
+		service srv-bbcrc
+		subchannel srv-bbcrc-sub1
+	}
+	comp-smtw {
+		service srv-smtw
+		subchannel srv-smtw-sub1
+	}
+	comp-brdg {
+		service srv-brdg
+		subchannel srv-brdg-sub1
+	}
+}
+outputs {
+	edi {
+		destinations {
+			tcp {
+				protocol tcp
+				listenport 9204
+			}
+		}
+		enable_pft false
+	}
+	; This throttles muxing down to nominal rate
+	throttle "simul://"
+}

@@ -1,0 +1,161 @@
+general {
+	dabmode 1
+}
+ensemble {
+	id 0x4fff
+	ecc 0xec ; Extended Country Code	
+	local-time-offset auto
+	international-table 1
+	label "Digital1 Network"
+	shortlabel "D1 Net"
+}
+services {
+	srv-abs { label "Absolute Radio" }
+	srv-capuk { label "Capital UK" }
+	srv-capdnc { label "Capital Dance" }
+	srv-capxta { label "Capital XTRA" }
+	srv-class { label "Classic FM" }
+	srv-glduk { label "Gold UK" }
+	srv-gh70 { label "GreatHits 70s" }
+	srv-gh80 { label "GreatHits 80s" }
+	srv-kssuk { label "Kiss UK" }
+	srv-lbcn { label "LBC News" }
+}
+subchannels {
+	srv-abs-sub1 {
+		type audio
+		bitrate 128
+		id 1
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:10001"
+	}
+	srv-capuk-sub1 {
+		type audio
+		bitrate 128
+		id 2
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:10002"
+	}
+	srv-capdnc-sub1 {
+		type audio
+		bitrate 128
+		id 3
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:10003"
+	}
+	srv-capxta-sub1 {
+		type audio
+		bitrate 128
+		id 4
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:10004"
+	}
+	srv-class-sub1 {
+		type audio
+		bitrate 128
+		id 5
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:10005"
+	}
+	srv-glduk-sub1 {
+		type audio
+		bitrate 128
+		id 6
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:10006"
+	}
+	srv-gh70-sub1 {
+		type audio
+		bitrate 128
+		id 7
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:10007"
+	}
+	srv-gh80-sub1 {
+		type audio
+		bitrate 128
+		id 8
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:10008"
+	}
+	srv-kssuk-sub1 {
+		type audio
+		bitrate 128
+		id 9
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:10009"
+	}
+	srv-lbcn-sub1 {
+		type audio
+		bitrate 128
+		id 10
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:10010"
+	}
+}
+components {
+	comp-abs {
+		service srv-abs
+		subchannel srv-abs-sub1
+	}
+	comp-capuk {
+		service srv-capuk
+		subchannel srv-capuk-sub1
+	}
+	comp-capdnc {
+		service srv-capdnc
+		subchannel srv-capdnc-sub1
+	}
+	comp-capxta {
+		service srv-capxta
+		subchannel srv-capxta-sub1
+	}
+	comp-class {
+		service srv-class
+		subchannel srv-class-sub1
+	}
+	comp-glduk {
+		service srv-glduk
+		subchannel srv-glduk-sub1
+	}
+	comp-gh70 {
+		service srv-gh70
+		subchannel srv-gh70-sub1
+	}
+	comp-gh80 {
+		service srv-gh80
+		subchannel srv-gh80-sub1
+	}
+	comp-kssuk {
+		service srv-kssuk
+		subchannel srv-kssuk-sub1
+	}
+	comp-lbcn {
+		service srv-lbcn
+		subchannel srv-lbcn-sub1
+	}
+}
+outputs {
+	edi {
+		destinations {
+			tcp {
+				protocol tcp
+				listenport 9202
+			}
+		}
+		enable_pft false
+	}
+	file "file:///home/sysadmin/edi-output/digital-one.eti?type=raw"
+	; This throttles muxing down to nominal rate
+	throttle "simul://"
+}

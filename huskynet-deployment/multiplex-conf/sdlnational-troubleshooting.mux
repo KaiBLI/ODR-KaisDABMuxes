@@ -1,0 +1,220 @@
+# Planet Rock Jams this up idfk why
+# Mellow Magic Breaks too
+# Times Radio also Breaks
+# Kerrang Breaks
+# Magic Soul Breaks
+# Magic Clss
+# Virgin 
+
+general {
+	dabmode 1
+}
+ensemble {
+	id 0x4fff
+	ecc 0xec ; Extended Country Code	
+	local-time-offset auto
+	international-table 1
+	label "SDL National"
+	shortlabel "SDL"
+}
+services {
+	srv-abs80 { label "Absolute 80s" }
+	srv-abs90 { label "Absolute 90s" }
+	srv-abscr { label "Absolute CR"}
+	srv-absc { label "Absolute Ctry" }
+	srv-boom { label "Boom Radio UK" }
+	srv-bfbs { label "BFBS UK" }
+	srv-fix { label "Fix Radio" }
+	srv-jazz { label "Jazz FM" }
+	srv-mcls { label "Magic Clss" }
+	srv-msol { label "Magic Soul" }
+	srv-mmgc { label "Mellow Magic" }
+	srv-kerr { label "Kerrang!" }
+	srv-virg { label "Virgin Radio" }
+	srv-time { label "Times Radio" }
+}
+subchannels {
+	srv-abs80-sub1 {
+		type audio
+		bitrate 128
+		id 1
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:11001"
+	}
+	srv-abs90-sub1 {
+		type audio
+		bitrate 96
+		id 2
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:11002"
+	}
+	srv-abscr-sub1 {
+		type audio
+		bitrate 96
+		id 3
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:11003"
+	}
+	srv-absc-sub1 {
+		type audio
+		bitrate 64
+		id 4
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:11004"
+	}
+	srv-boom-sub1 {
+		type audio
+		bitrate 96
+		id 5
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:11005"
+	}
+	srv-bfbs-sub1 {
+		type audio
+		bitrate 64
+		id 6
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:11006"
+	}
+	srv-fix-sub1 {
+		type audio
+		bitrate 48
+		id 7
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:11007"
+	}
+	srv-jazz-sub1 {
+		type audio
+		bitrate 128
+		id 8
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:11008"
+	}
+	srv-mcls-sub1 {
+		type audio
+		bitrate 128
+		id 9
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:11009"
+	}
+	srv-msol-sub1 {
+		type audio
+		bitrate 80
+		id 10
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:11010"
+	}
+	srv-mmgc-sub1 {
+		type audio
+		bitrate 80
+		id 11
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:/11011"
+	}
+	srv-kerr-sub1 {
+		type audio
+		bitrate 96
+		id 13
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:/11013"
+	}
+	srv-virg-sub1 {
+		type audio
+		bitrate 96
+		id 14
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:/11014"
+	}
+	srv-time-sub1 {
+		type audio
+		bitrate 64
+		id 15
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:/11015"
+	}
+}
+components {
+	comp-abs80 {
+		service srv-abs80
+		subchannel srv-abs80-sub1
+	}
+	comp-abs90 {
+		service srv-abs90
+		subchannel srv-abs90-sub1
+	}
+	comp-abscr {
+		service srv-abscr
+		subchannel srv-abscr-sub1
+	}
+	comp-absc {
+		service srv-absc
+		subchannel srv-absc-sub1
+	}
+	comp-boom {
+		service srv-boom
+		subchannel srv-boom-sub1
+	}
+	comp-bfbs {
+		service srv-bfbs
+		subchannel srv-bfbs-sub1
+	}
+	comp-fix {
+		service srv-fix
+		subchannel srv-fix-sub1
+	}
+	comp-jazz {
+		service srv-jazz
+		subchannel srv-jazz-sub1
+	}
+	comp-mcls {
+		service srv-mcls
+		subchannel srv-mcls-sub1
+	}
+	comp-msol {
+		service srv-msol
+		subchannel srv-msol-sub1
+	}
+    comp-mmgc {
+        service srv-mmgc   
+        subchannel srv-mmgc-sub1
+    }
+    comp-kerr {
+        service srv-kerr   
+        subchannel srv-kerr-sub1
+    }
+    comp-virg {
+        service srv-virg   
+        subchannel srv-virg-sub1
+    }
+    comp-time {
+        service srv-time   
+        subchannel srv-time-sub1
+    }
+}
+outputs {
+	edi {
+		destinations {
+			tcp {
+				protocol tcp
+				listenport 9203
+			}
+		}
+		enable_pft false
+	}
+	; This throttles muxing down to nominal rate
+	throttle "simul://"
+}

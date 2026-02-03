@@ -1,0 +1,160 @@
+general {
+	dabmode 1
+}
+ensemble {
+	id 0x4fff
+	ecc 0xec ; Extended Country Code	
+	local-time-offset auto
+	international-table 1
+	label "BBC National DAB"
+	shortlabel "BBC Nati"
+}
+services {
+	srv-bbc1 { label "BBC Radio1" }
+	srv-bbc2 { label "BBC Radio2" }
+	srv-bbc3 { label "BBC Radio3" }
+	srv-bbc4 { label "BBC Radio4" }
+	srv-bbc5 { label "BBC Radio5Live" }
+	srv-bbc1d { label "BBC Radio1Dance" }
+	srv-bbc6m { label "BBC Radio6Music" }
+	srv-bbc4x { label "BBC Radio4Extra" }
+	srv-bbcan { label "BBC AsianNetwork" }
+	srv-bbcws { label "BBC WorldService" }
+}
+subchannels {
+	srv-bbc1-sub1 {
+		type audio
+		bitrate 128
+		id 1
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:9001"
+	}
+	srv-bbc2-sub1 {
+		type audio
+		bitrate 128
+		id 2
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:9002"
+	}
+	srv-bbc3-sub1 {
+		type audio
+		bitrate 128
+		id 3
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:9003"
+	}
+	srv-bbc4-sub1 {
+		type audio
+		bitrate 128
+		id 4
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:9004"
+	}
+	srv-bbc5-sub1 {
+		type audio
+		bitrate 128
+		id 5
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:9005"
+	}
+	srv-bbc1d-sub1 {
+		type audio
+		bitrate 128
+		id 6
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:9010"
+	}
+	srv-bbc6m-sub1 {
+		type audio
+		bitrate 128
+		id 7
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:9006"
+	}
+	srv-bbc4x-sub1 {
+		type audio
+		bitrate 128
+		id 8
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:9007"
+	}
+	srv-bbcan-sub1 {
+		type audio
+		bitrate 128
+		id 9
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:9008"
+	}
+	srv-bbcws-sub1 {
+		type audio
+		bitrate 128
+		id 10
+		protection 5
+		inputproto edi
+		inputuri "tcp://*:9009"
+	}
+}
+components {
+	comp-bbc1 {
+		service srv-bbc1
+		subchannel srv-bbc1-sub1
+	}
+	comp-bbc2 {
+		service srv-bbc2
+		subchannel srv-bbc2-sub1
+	}
+	comp-bbc3 {
+		service srv-bbc3
+		subchannel srv-bbc3-sub1
+	}
+	comp-bbc4 {
+		service srv-bbc4
+		subchannel srv-bbc4-sub1
+	}
+	comp-bbc5 {
+		service srv-bbc5
+		subchannel srv-bbc5-sub1
+	}
+	comp-bbc1d {
+		service srv-bbc1d
+		subchannel srv-bbc1d-sub1
+	}
+	comp-bbc6m {
+		service srv-bbc6m
+		subchannel srv-bbc6m-sub1
+	}
+	comp-bbc4x {
+		service srv-bbc4x
+		subchannel srv-bbc4x-sub1
+	}
+	comp-bbcan {
+		service srv-bbcan
+		subchannel srv-bbcan-sub1
+	}
+	comp-bbcws {
+		service srv-bbcws
+		subchannel srv-bbcws-sub1
+	}
+}
+outputs {
+	edi {
+		destinations {
+			tcp {
+				protocol tcp
+				listenport 9201
+			}
+		}
+		enable_pft false
+	}
+	; This throttles muxing down to nominal rate
+	throttle "simul://"
+}
